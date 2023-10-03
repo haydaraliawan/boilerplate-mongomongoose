@@ -7,15 +7,15 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 mongoose.connection.on("connected", () => {
-  console.log("MongoDB connected successfully");
+    console.log("MongoDB connected successfully");
 });
 
 mongoose.connection.on("error", (err) => {
-  console.error("MongoDB connection error: " + err);
+    console.error("MongoDB connection error: " + err);
 });
 
 mongoose.connection.on("disconnected", () => {
-  console.log("MongoDB disconnected");
+    console.log("MongoDB disconnected");
 });
 
 const Schema = mongoose.Schema;
@@ -41,11 +41,21 @@ var createAndSavePerson = function (done) {
     });
 };
 
-
-
-
-
 const createManyPeople = (arrayOfPeople, done) => {
+    let arrayOfPeople = [
+        {
+            name: "rayyan Atique",
+            age: 84,
+            favoriteFoods: ["eggs", "fish", "fresh fruit"],
+        },
+        {
+            name: "wajahat Atique",
+            age: 84,
+            favoriteFoods: ["eggs", "fish", "fresh fruit"],
+        },
+    ];
+
+    Person.create(arrayOfPeople);
     done(null /*, data*/);
 };
 
