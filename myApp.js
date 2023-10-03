@@ -42,78 +42,80 @@ var createAndSavePerson = function (done) {
 };
 
 let arrayOfPeople = [
-  {
-      name: "rayyan Atique",
-      age: 84,
-      favoriteFoods: ["eggs", "fish", "fresh fruit"],
-  },
-  {
-      name: "wajahat Atique",
-      age: 84,
-      favoriteFoods: ["eggs", "fish", "fresh fruit"],
-  },
+    {
+        name: "rayyan Atique",
+        age: 84,
+        favoriteFoods: ["eggs", "fish", "fresh fruit"],
+    },
+    {
+        name: "wajahat Atique",
+        age: 84,
+        favoriteFoods: ["eggs", "fish", "fresh fruit"],
+    },
 ];
 
 const createManyPeople = (arrayOfPeople, done) => {
-  Person.create(arrayOfPeople, function (err, people) {
-    if (err) return console.log(err);
-    done(null, people);
-  });
-
-    
-    
+    Person.create(arrayOfPeople, function (err, people) {
+        if (err) return console.log(err);
+        done(null, people);
+    });
 };
 
 const findPeopleByName = (personName, done) => {
-  Person.find({name: personName}, function (err, people) {
-    if (err) return console.log(err);
-    done(null, people);
-  })
-    
+    Person.find({ name: personName }, function (err, people) {
+        if (err) return console.log(err);
+        done(null, people);
+    });
 };
 
 const findOneByFood = (food, done) => {
-  Person.findOne({favoriteFoods: food}, function (err, people) {
-    if(err) return console.log(err);
-    done(null, people);
-  })
-    
+    Person.findOne({ favoriteFoods: food }, function (err, people) {
+        if (err) return console.log(err);
+        done(null, people);
+    });
 };
 
-const findPersonById = function(personId, done) {
-  Person.findById(personId, function (err, data) {
-    if (err) return console.log(err);
-    done(null, data);
-  });
+const findPersonById = function (personId, done) {
+    Person.findById(personId, function (err, data) {
+        if (err) return console.log(err);
+        done(null, data);
+    });
 };
 
 const findEditThenSave = (personId, done) => {
-  const foodToAdd = "hamburger";
-  
-  // Find the person by ID
-  Person.findById(personId, function(err, person) {
-      if (err) {
-          return done(err);
-      }
-      
-      // Update the person's favorite foods
-      person.favoriteFoods.push(foodToAdd);
-      
-      // Save the updated person
-      person.save(function(err, updatedPerson) {
-          if (err) {
-              return done(err);
-          }
-          
-          done(null, updatedPerson);
-      });
-  });
+    const foodToAdd = "hamburger";
+
+    // Find the person by ID
+    Person.findById(personId, function (err, person) {
+        if (err) {
+            return done(err);
+        }
+
+        // Update the person's favorite foods
+        person.favoriteFoods.push(foodToAdd);
+
+        // Save the updated person
+        person.save(function (err, updatedPerson) {
+            if (err) {
+                return done(err);
+            }
+
+            done(null, updatedPerson);
+        });
+    });
 };
 
 const findAndUpdate = (personName, done) => {
-    const ageToSet = 20;
+    Person.findOneAndUpdate(
+        { name: personName },
+        { age: 20 },
+        { new: true },
+        function (err, updatedPerson) {
+            if (err) return console.error(err);
 
-    done(null /*, data*/);
+            done(null, updatedPerson);
+        }
+    );
 };
 
 const removeById = (personId, done) => {
