@@ -126,17 +126,26 @@ const removeById = (personId, done) => {
 };
 
 const removeManyPeople = (done) => {
-  const nameToRemove = "Mary";
-  
-  // Remove all people with the name "Mary"
-  Person.remove({ name: nameToRemove }, (err, removedDoc) => {
-      if (err) return console.log(err);
-      done(null, removedDoc);
-  });
+    const nameToRemove = "Mary";
+
+    // Remove all people with the name "Mary"
+    Person.remove({ name: nameToRemove }, (err, removedDoc) => {
+        if (err) return console.log(err);
+        done(null, removedDoc);
+    });
 };
 
 const queryChain = (done) => {
     const foodToSearch = "burrito";
+
+    Person.find({ favoriteFoods: foodToSearch })
+        .sort('name')
+        .limit(2)
+        .select('-age')
+        .exec((err, results) => {
+            if (err) return console.log(err);
+            done(null, results);
+        });
 
     done(null /*, data*/);
 };
