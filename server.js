@@ -95,11 +95,11 @@ createAndSavePerson(function (err, data) {
 const createPerson = require("./myApp.js").createAndSavePerson;
 router.get("/create-and-save-person", function (req, res, next) {
   // in case of incorrect function use wait timeout then respond
-  let t = setTimeout(() => {
-    next({ message: "timeout" });
-  }, TIMEOUT);
+  // let t = setTimeout(() => {
+  //   next({ message: "timeout" });
+  // }, TIMEOUT);
   createPerson(function (err, data) {
-    clearTimeout(t);
+    // clearTimeout(t);
     if (err) {
       return next(err);
     }
