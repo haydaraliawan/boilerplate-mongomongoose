@@ -81,6 +81,17 @@ router.post("/mongoose-model", function (req, res, next) {
   res.json(p);
 });
 
+
+const createAndSavePerson = require("./myApp.js").createAndSavePerson;
+
+createAndSavePerson(function (err, data) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log("Person saved:", data);
+  }
+});
+
 const createPerson = require("./myApp.js").createAndSavePerson;
 router.get("/create-and-save-person", function (req, res, next) {
   // in case of incorrect function use wait timeout then respond
