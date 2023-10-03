@@ -29,13 +29,13 @@ const personSchema = new Schema({
 const Person = mongoose.model("Person", personSchema);
 
 var createAndSavePerson = function (done) {
-    var janeFonda = new Person({
-        name: "Jane Fonda",
+    var LaibaAtique = new Person({
+        name: "Laiba Atique",
         age: 84,
         favoriteFoods: ["eggs", "fish", "fresh fruit"],
     });
 
-    janeFonda.save(function (err, data) {
+    LaibaAtique.save(function (err, data) {
         if (err) return console.error(err);
         done(null, data);
     });
