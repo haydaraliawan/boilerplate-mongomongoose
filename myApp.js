@@ -137,18 +137,18 @@ const removeManyPeople = (done) => {
 
 const queryChain = (done) => {
     const foodToSearch = "burrito";
-
+  
     Person.find({ favoriteFoods: foodToSearch })
-        .sort("name")
-        .limit(2)
-        .select("-age")
-        .exec((err, results) => {
-            if (err) return console.log(err);
-            done(null, results);
-        });
-
-    done(null /*, data*/);
-};
+      .sort("name")
+      .limit(2)
+      .select("-age")
+      .exec((err, results) => {
+        if (err) {
+          return done(err); // Handle errors by passing them to the callback
+        }
+        done(null, results); // Pass the results to the callback
+      });
+  };
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
