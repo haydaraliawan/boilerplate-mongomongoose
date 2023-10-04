@@ -139,9 +139,9 @@ const queryChain = (done) => {
     const foodToSearch = "burrito";
 
     Person.find({ favoriteFoods: foodToSearch })
-        .sort('name')
+        .sort("name")
         .limit(2)
-        .select('-age')
+        .select("-age")
         .exec((err, results) => {
             if (err) return console.log(err);
             done(null, results);
